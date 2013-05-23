@@ -100,7 +100,8 @@
 		$schema_version = get_schema_version();
 
 		if ($schema_version != SCHEMA_VERSION) {
-			die("Schema version is wrong, please upgrade the database.\n");
+			fwrite(STDERR, "Schema version is wrong, please upgrade the database.\n");
+			exit(1);
 		}
 	}
 
@@ -141,8 +142,9 @@
 
 	// Try to lock a file in order to avoid concurrent update.
 	if (!$lock_handle) {
-		die("error: Can't create lockfile ($lock_filename). ".
+		fwrite(STDERR, "error: Can't create lockfile ($lock_filename). ".
 			"Maybe another update process is already running.\n");
+		exit(1);
 	}
 
 	if (isset($options["force-update"])) {
