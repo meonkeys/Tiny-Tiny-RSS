@@ -42,7 +42,7 @@
 
 	$options = getopt("", $longopts);
 
-	if (count($options) == 0 && !defined('STDIN')) {
+	if ((!$options || count($options) == 0) && !defined('STDIN')) {
 		?> <html>
 		<head>
 		<title>Tiny Tiny RSS data update script.</title>
@@ -59,6 +59,11 @@
 		</body></html>
 	<?php
 		exit;
+	}
+
+	if (!$options) {
+		$extra_info = ini_get('register_argc_argv') ? "register_argc_argv must be enabled" : "";
+		fwrite(STDERR, "error: getopt() failed. $extra_info\n");
 	}
 
 	if (count($options) == 0 || isset($options["help"]) ) {
