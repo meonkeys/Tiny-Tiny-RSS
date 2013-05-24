@@ -63,7 +63,7 @@
 
 	if (!$options) {
 		$extra_info = ini_get('register_argc_argv') ? "register_argc_argv must be enabled" : "";
-		_debug("error: getopt() failed. $extra_info\n");
+		_debug("error: getopt() failed. $extra_info");
 		exit(1);
 	}
 
@@ -101,7 +101,7 @@
 		$schema_version = get_schema_version();
 
 		if ($schema_version != SCHEMA_VERSION) {
-			_debug("Schema version is wrong, please upgrade the database.\n");
+			_debug("Schema version is wrong, please upgrade the database.");
 			exit(1);
 		}
 	}
@@ -144,7 +144,7 @@
 	// Try to lock a file in order to avoid concurrent update.
 	if (!$lock_handle) {
 		_debug("error: Can't create lockfile ($lock_filename). ".
-			"Maybe another update process is already running.\n");
+			"Maybe another update process is already running.");
 		exit(1);
 	}
 
@@ -179,7 +179,7 @@
 
 	if (isset($options["daemon-loop"])) {
 		if (!make_stampfile('update_daemon.stamp')) {
-			_debug("warning: unable to create stampfile\n");
+			_debug("warning: unable to create stampfile");
 		}
 
 		update_daemon_common(isset($options["pidlock"]) ? 50 : DAEMON_FEED_LIMIT);
@@ -192,7 +192,7 @@
 
 	if (isset($options["cleanup-tags"])) {
 		$rc = cleanup_tags( 14, 50000);
-		_debug("$rc tags deleted.\n");
+		_debug("$rc tags deleted.");
 	}
 
 	if (isset($options["indexes"])) {
