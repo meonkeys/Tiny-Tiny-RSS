@@ -64,6 +64,7 @@
 	if (!$options) {
 		$extra_info = ini_get('register_argc_argv') ? "register_argc_argv must be enabled" : "";
 		_debug("error: getopt() failed. $extra_info\n");
+		exit(1);
 	}
 
 	if (count($options) == 0 || isset($options["help"]) ) {
