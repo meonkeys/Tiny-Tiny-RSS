@@ -63,7 +63,7 @@
 
 	if (!$options) {
 		$extra_info = ini_get('register_argc_argv') ? "register_argc_argv must be enabled" : "";
-		fwrite(STDERR, "error: getopt() failed. $extra_info\n");
+		_debug("error: getopt() failed. $extra_info\n");
 	}
 
 	if (count($options) == 0 || isset($options["help"]) ) {
@@ -100,7 +100,7 @@
 		$schema_version = get_schema_version();
 
 		if ($schema_version != SCHEMA_VERSION) {
-			fwrite(STDERR, "Schema version is wrong, please upgrade the database.\n");
+			_debug("Schema version is wrong, please upgrade the database.\n");
 			exit(1);
 		}
 	}
@@ -142,7 +142,7 @@
 
 	// Try to lock a file in order to avoid concurrent update.
 	if (!$lock_handle) {
-		fwrite(STDERR, "error: Can't create lockfile ($lock_filename). ".
+		_debug("error: Can't create lockfile ($lock_filename). ".
 			"Maybe another update process is already running.\n");
 		exit(1);
 	}
