@@ -68,22 +68,22 @@
 	}
 
 	if (count($options) == 0 || isset($options["help"]) ) {
-		print "Tiny Tiny RSS data update script.\n\n";
-		print "Options:\n";
-		print "  --feeds              - update feeds\n";
-		print "  --feedbrowser        - update feedbrowser\n";
-		print "  --daemon             - start single-process update daemon\n";
-		print "  --task N             - create lockfile using this task id\n";
-		print "  --cleanup-tags       - perform tags table maintenance\n";
-		print "  --quiet              - don't output messages to stdout\n";
-		print "  --log FILE           - log messages to FILE\n";
-		print "  --indexes            - recreate missing schema indexes\n";
-		print "  --update-schema      - update database schema\n";
-		print "  --convert-filters    - convert type1 filters to type2\n";
-		print "  --force-update       - force update of all feeds\n";
-		print "  --list-plugins       - list all available plugins\n";
-		print "  --help               - show this help\n";
-		print "Plugin options:\n";
+		echo "Tiny Tiny RSS data update script.\n\n";
+		echo "Options:\n";
+		echo "  --feeds              - update feeds\n";
+		echo "  --feedbrowser        - update feedbrowser\n";
+		echo "  --daemon             - start single-process update daemon\n";
+		echo "  --task N             - create lockfile using this task id\n";
+		echo "  --cleanup-tags       - perform tags table maintenance\n";
+		echo "  --quiet              - don't output messages to stdout\n";
+		echo "  --log FILE           - log messages to FILE\n";
+		echo "  --indexes            - recreate missing schema indexes\n";
+		echo "  --update-schema      - update database schema\n";
+		echo "  --convert-filters    - convert type1 filters to type2\n";
+		echo "  --force-update       - force update of all feeds\n";
+		echo "  --list-plugins       - list all available plugins\n";
+		echo "  --help               - show this help\n";
+		echo "Plugin options:\n";
 
 		foreach (PluginHost::getInstance()->get_commands() as $command => $data) {
 			$args = $data['arghelp'];
@@ -164,7 +164,7 @@
 
 	if (isset($options["feedbrowser"])) {
 		$count = update_feedbrowser_cache();
-		print "Finished, $count feeds processed.\n";
+		echo "Finished, $count feeds processed.\n";
 	}
 
 	if (isset($options["daemon"])) {
